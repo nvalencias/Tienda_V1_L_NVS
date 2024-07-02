@@ -11,7 +11,7 @@ public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;//auto increment en java :0
 
-    @Id
+    @Id//con estas tres lineas se valida la base de datos con la progra sobre el id, tienen que ser iguales
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
     private Long idCategoria;
