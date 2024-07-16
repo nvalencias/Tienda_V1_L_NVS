@@ -7,7 +7,7 @@
 
     <head th:replace="~{layout/plantilla :: head}">
 
-        <title>arbol</title>
+        <title>TechShop</title>
 
     </head>
 
@@ -15,8 +15,11 @@
 
         <header th:replace="~{layout/plantilla :: header}"/>
 
-        <section th:replace="~{arbol/fragmentos :: editarArbol}"/>
+        <section th:replace="~{producto/fragmentos :: botonesAgregar}"/>
 
+        <section th:replace="~{producto/fragmentos :: agregarProducto}"/> 
+
+        <section th:replace="~{producto/fragmentos :: listadoProductos}"/>
 
         <footer th:replace="~{layout/plantilla :: footer}"/>      
 
