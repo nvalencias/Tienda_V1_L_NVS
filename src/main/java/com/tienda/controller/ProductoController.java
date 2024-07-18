@@ -1,9 +1,10 @@
 package com.tienda.controller;
 
 import com.tienda.domain.Producto;
+import com.tienda.service.CategoriaService;
+import lombok.extern.slf4j.Slf4j;
 import com.tienda.service.ProductoService;
 import com.tienda.service.impl.FirebaseStorageServiceImpl;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,55 +14,65 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @Controller
 @Slf4j
-@RequestMapping("/categoria")//(categoria/listado)
+@RequestMapping("/producto") //(/producto)
 public class ProductoController {
+
+    @Autowired
+    private ProductoService productoService;
     
     @Autowired
-    private ProductoService categoriaService;
+    private CategoriaService categoriaService;
 
     @GetMapping("/listado")
     public String inicio(Model model) {
-        var categorias = categoriaService.getProductos(false);
+        var productos = productoService.getProductos(false);
+        var categorias = categoriaService.getCategorias(false);
+        model.addAttribute("productos", productos); //lista de productos
         model.addAttribute("categorias", categorias);
-        model.addAttribute("totalProductos", categorias.size());
-        return "/categoria/listado";
+        model.addAttribute("totalProductos", productos.size()); //
+        return "/producto/listado";
     }
     
-    @GetMapping("/nuevo")
-    public String categoriaNuevo(Producto categoria) {
-        return "/categoria/modifica";
+     @GetMapping("/nuevo")
+    public String productoNuevo(Producto producto) {
+        return "/producto/modifica";
     }
 
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
     
-        @PostMapping("/guardar")
-    public String categoriaGuardar(Producto categoria,
+    @PostMapping("/guardar")
+    public String productoGuardar(Producto producto,
             @RequestParam("imagenFile") MultipartFile imagenFile) {        
         if (!imagenFile.isEmpty()) {
-            categoriaService.save(categoria);
-            categoria.setRutaImagen(
+            productoService.save(producto);
+            producto.setRutaImagen(
                     firebaseStorageService.cargaImagen(
                             imagenFile, 
-                            "categoria", 
-                            categoria.getIdProducto()));
+                            "producto", 
+                            producto.getIdProducto()));
         }
-        categoriaService.save(categoria);
-        return "redirect:/categoria/listado";
+        productoService.save(producto);
+        return "redirect:/producto/listado";
     }
 
     @GetMapping("/eliminar/{idProducto}")
-    public String categoriaEliminar(Producto categoria) {
-        categoriaService.delete(categoria);
-        return "redirect:/categoria/listado";
+    public String productoEliminar(Producto producto) {
+        productoService.delete(producto);
+        return "redirect:/producto/listado";
     }
 
     @GetMapping("/modificar/{idProducto}")
-    public String categoriaModificar(Producto categoria, Model model) {
-        categoria = categoriaService.getProducto(categoria);
-        model.addAttribute("categoria", categoria);
-        return "/categoria/modifica";
-    }
+    public String productoModificar(Producto producto, Model model) {
+        producto = productoService.getProducto(producto);
+        var categorias = categoriaService.getCategorias(false);
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("producto", producto);
+        return "/producto/modifica";
+    }   
+    
+    
 }

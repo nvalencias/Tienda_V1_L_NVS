@@ -21,9 +21,11 @@ public class Producto implements Serializable {
     private String descripcion;
     private String rutaImagen;
     private boolean activo;
-    
-    private long idCategoria;
-    
+
+    //private long idCategoria;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    Categoria categoria;
     
     public Producto() {
 
