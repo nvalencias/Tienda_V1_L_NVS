@@ -66,7 +66,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     
     /* Los siguiente métodos son para implementar el tema de seguridad dentro del proyecto */
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
+    public void addViewControllers(ViewControllerRegistry registry) {//vista controladores
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/login").setViewName("login");
@@ -80,7 +80,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .requestMatchers("/","/index","/errores/**",
                         "/carrito/**","/pruebas/**","/reportes/**",
                         "/registro/**","/js/**","/webjars/**")
-                        .permitAll()//todos los roles van a tener acceso que están arriba.
+                        .permitAll()//todos los roles van a tener acceso a las vistas que están arriba.
                 .requestMatchers(
                         "/producto/nuevo","/producto/guardar",
                         "/producto/modificar/**","/producto/eliminar/**",

@@ -43,18 +43,21 @@ public class ProductoServiceImpl implements ProductoService {
         productoDao.delete(producto);
     }
     
+    //consultas ampliadas cam1
     @Override
     @Transactional(readOnly = true)
     public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup){
         return productoDao.findByPrecioBetweenOrderByDescripcion(precioInf,precioSup);
     }
     
+    //consultas ampliadas cam2
     @Override
     @Transactional(readOnly = true)
     public List<Producto> metodoJPQL(@Param("precioInf")double precioInf,@Param("precioSup") double precioSup){
         return productoDao.metodoJPQL(precioInf, precioSup);
     }
     
+    //consultas ampliadas cam3
     @Override
     @Transactional(readOnly = true)
     public List<Producto> metodoNativo(@Param("precioInf")double precioInf,@Param("precioSup") double precioSup){

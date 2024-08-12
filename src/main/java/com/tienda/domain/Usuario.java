@@ -1,4 +1,4 @@
-
+//sc
 package com.tienda.domain;
 
 import jakarta.persistence.Column;
@@ -34,7 +34,7 @@ public class Usuario implements Serializable{
 
     @OneToMany
     @JoinColumn(name = "id_usuario")
-    List<Rol> roles;
+    List<Rol> roles;//se va a traer la información de los rolres dependiendo del id de los usuarios.
     
     
 }

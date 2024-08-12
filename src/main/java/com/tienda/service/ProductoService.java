@@ -24,9 +24,12 @@ public interface ProductoService {
     // Se elimina el producto que tiene el id pasado por parámetro
     public void delete(Producto producto);
     
+    //consultas ampliadas cam1
     public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup);
     
+    //consultas ampliadas JPQL cam2
     public List<Producto> metodoJPQL(@Param("precioInf")double precioInf,@Param("precioSup") double precioSup);
     
+    //consultas ampliadas cam3
     public List<Producto> metodoNativo(@Param("precioInf")double precioInf,@Param("precioSup") double precioSup);
 }

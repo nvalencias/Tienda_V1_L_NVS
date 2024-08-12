@@ -41,7 +41,7 @@
             </div>
         </section>
 
-
+        <!-- bloque para llamado de filtros con consultas ampliadas. cam1-->
         <!-- 3 Sección para crear los filtros -->
         <section th:fragment="filtros" class="bg-light">
             <div class="row py-2">
@@ -74,6 +74,7 @@
                 </div>
 
                 <div class="col-md-3">
+                    <!-- cam2 -->
                     <form method="POST" th:action="@{/pruebas/query2}" 
                           class="was-validated">
                         <div class="card">                            
@@ -100,6 +101,7 @@
                     </form>
                 </div>
                 <div class="col-md-3">
+                    <!-- cam3 -->
                     <form method="POST" th:action="@{/pruebas/query3}" 
                           class="was-validated">
                         <div class="card success">

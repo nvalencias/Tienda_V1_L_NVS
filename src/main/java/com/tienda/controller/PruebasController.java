@@ -53,7 +53,7 @@ public class PruebasController {
         return "/pruebas/listado";
     }
     
-    
+    //consultas ampliadas cam1
     //Los métodos siguientes son para la prueba de consultas(queries)
     @GetMapping("/listado2")
     public String listado2(Model model) {
@@ -71,6 +71,7 @@ public class PruebasController {
          return "/pruebas/listado2";
     }
     
+    //consultas ampliadas cam2
     @PostMapping("/query2")
     public String consultaQuery2(@RequestParam(value = "precioInf") double precioInf, @RequestParam(value="precioSup")double precioSup,Model model){
          var productos = productoService.metodoJPQL(precioInf, precioSup);
@@ -80,6 +81,7 @@ public class PruebasController {
          return "/pruebas/listado2";
     }
     
+    //constulas ampliadas cam3
     @PostMapping("/query3")
     public String consultaQuery3(@RequestParam(value = "precioInf") double precioInf, @RequestParam(value="precioSup")double precioSup,Model model){
          var productos = productoService.metodoNativo(precioInf, precioSup);
